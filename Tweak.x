@@ -841,6 +841,7 @@ static void hideButtonsInActionBarIfNeeded(id collectionView) {
 */
 
 // I ran out of ideas
+/*
 %hook _ASDisplayView
 
 - (void)didMoveToWindow {
@@ -849,4 +850,26 @@ static void hideButtonsInActionBarIfNeeded(id collectionView) {
 	if (IS_ENABLED(HideGenMusicShelf) && [self.accessibilityIdentifier isEqualToString:@"feed_nudge.view"]) self.hidden = YES;
 }
 
+%end
+*/
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    NSString *viewID = self.accessibilityIdentifier;
+    BOOL shouldHide = NO;
+    if (IS_ENABLED(HideHoriShelf) && [viewID isEqualToString:@"horizontal-video-shelf.view"]) shouldHide = YES;
+    if (IS_ENABLED(HideGenMusicShelf) && [viewID isEqualToString:@"feed_nudge.view"]) shouldHide = YES;
+    if (shouldHide) {
+        self.hidden = YES;
+        // Force the view and its superview (the cell) to zero height
+        CGRect frame = self.frame;
+        frame.size.height = 0;
+        self.frame = frame;
+        if (self.superview) {
+            self.superview.frame = frame;
+            self.superview.hidden = YES;
+        }
+    }
+}
 %end
