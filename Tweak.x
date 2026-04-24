@@ -85,14 +85,14 @@
 %end
 
 %hook YTHeaderLogoController
-- (YTHeaderLogoController *)init {
-    return IS_ENABLED(HideYTLogo) ? NULL : %orig;
+- (id)init {
+    return IS_ENABLED(HideYTLogo) ? nil : %orig;
 }
 %end
 
 %hook YTHeaderLogoControllerImpl
-- (YTHeaderLogoController *)init {
-    return IS_ENABLED(HideYTLogo) ? NULL : %orig;
+- (id)init {
+    return IS_ENABLED(HideYTLogo) ? nil : %orig;
 }
 %end
 
