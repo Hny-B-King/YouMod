@@ -32,17 +32,11 @@ on:
         required: false
         type: boolean
 
-      ytclassic:
-        description: "Integrate YTClassicVideoQuality"
+      volboost:
+        description: "Integrate VolumeBoostYT (Require iOS 16+)"
         default: true
         required: false
         type: boolean
-
-      # volboost:
-      #   description: "Integrate VolumeBoostYT (Require iOS 16+)"
-      #   default: true
-      #   required: false
-      #   type: boolean
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -157,6 +151,9 @@ jobs:
       - name: Clone YouLoop
         run: git clone --quiet --depth=1 https://github.com/bhackel/YouLoop.git
 
+      - name: Clone YTweaks
+        run: git clone --quiet --depth=1 https://github.com/fosterbarnes/YTweaks.git
+
       - name: Clone Alderis
         run: git clone --quiet --depth=1 https://github.com/hbang/Alderis.git
 
@@ -165,9 +162,6 @@ jobs:
 
       - name: Clone YouChooseQuality
         run: git clone --quiet https://github.com/PoomSmart/YouChooseQuality.git
-
-      - name: Clone YTSilentVote
-        run: git clone --quiet --depth=1 https://github.com/PoomSmart/YTSilentVote.git
 
       - name: Clone YouShare
         run: git clone --quiet --depth=1 https://github.com/Tonwalter888/YouShare.git
@@ -178,26 +172,19 @@ jobs:
       - name: Clone YouGetCaption
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouGetCaption.git
 
-      - name: Clone IAmYouTube
-        run: git clone --quiet --depth=1 https://github.com/PoomSmart/IAmYouTube.git
+      - name: Clone iSponsorBlock
+        run: git clone --quiet --depth=1 https://github.com/Galactic-Dev/iSponsorBlock.git
 
-      - name: Clone NoYTPremium
-        run: git clone --quiet --depth=1 https://github.com/PoomSmart/NoYTPremium.git
-
-      - name: Clone YouTube-X
-        run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouTube-X.git
+      - name: Clone youtube-native-share
+        run: git clone --quiet --depth=1 https://github.com/jkhsjdhjs/youtube-native-share.git
 
       - name: Clone YTVideoErrorAlert
         if: ${{ inputs.ytvid }}
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YTVideoErrorAlert.git
 
-      - name: Clone YTClassicVideoQuality
-        if: ${{ inputs.ytclassic }}
-        run: git clone --quiet --depth=1 https://github.com/PoomSmart/YTClassicVideoQuality.git
-
-      # - name: Clone VolumeBoostYT
-      #   if: ${{ inputs.volboost }}
-      #   run: git clone --quiet --depth=1 https://github.com/VasirakCalgux/VolumeBoostYT.git
+      - name: Clone VolumeBoostYT
+        if: ${{ inputs.volboost }}
+        run: git clone --quiet --depth=1 https://github.com/VasirakCalgux/VolumeBoostYT.git
 
       - name: Build YouMod
         run: |
@@ -292,17 +279,17 @@ jobs:
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ${{ github.workspace }}/youchoose.deb
 
-      - name: Build YTSilentVote
-        run: |
-          cd YTSilentVote
-          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
-          mv packages/*.deb ${{ github.workspace }}/ytnovote.deb  
-
       - name: Build YouShare
         run: |
           cd YouShare
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ${{ github.workspace }}/youshare.deb
+
+      - name: Build YTweaks
+        run: |
+          cd YTweaks
+          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+          mv packages/*.deb ${{ github.workspace }}/ytweaks.deb
           
       - name: Build Gonerino
         run: |
@@ -316,23 +303,18 @@ jobs:
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ${{ github.workspace }}/ygc.deb
 
-      - name: Build YouTube-X
+      - name: Build iSponsorBlock
         run: |
-          cd YouTube-X
-          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
-          mv packages/*.deb ${{ github.workspace }}/ytx.deb
+          cd iSponsorBlock
+          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless TARGET=iphone:clang:latest:13.0
+          mv packages/*.deb ${{ github.workspace }}/isponsorblock.deb
 
-      - name: Build IAmYouTube
+      - name: Build youtube-native-share
         run: |
-          cd IAmYouTube
+          cd youtube-native-share
+          git clone --quiet --depth=1 https://github.com/protocolbuffers/protobuf.git
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
-          mv packages/*.deb ${{ github.workspace }}/imyt.deb
-
-      - name: Build NoYTPremium
-        run: |
-          cd NoYTPremium
-          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
-          mv packages/*.deb ${{ github.workspace }}/noytpre.deb
+          mv packages/*.deb ${{ github.workspace }}/ytnativeshare.deb
 
       - name: Build YTVideoErrorAlert
         if: ${{ inputs.ytvid }}
@@ -341,19 +323,12 @@ jobs:
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ${{ github.workspace }}/ytvideoerror.deb
 
-      - name: Build YTClassicVideoQuality
-        if: ${{ inputs.ytclassic }}
+      - name: Build VolumeBoostYT
+        if: ${{ inputs.volboost }}
         run: |
-          cd YTClassicVideoQuality
-          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
-          mv packages/*.deb ${{ github.workspace }}/ytclassic.deb
-
-      # - name: Build VolumeBoostYT
-      #   if: ${{ inputs.volboost }}
-      #   run: |
-      #     cd VolumeBoostYT
-      #     make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64
-      #     mv packages/*.deb ${{ github.workspace }}/volboostyt.deb
+          cd VolumeBoostYT
+          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64
+          mv packages/*.deb ${{ github.workspace }}/volboostyt.deb
           
       - name: Inject Tweaks Into IPA
         run: |

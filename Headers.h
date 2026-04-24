@@ -10,6 +10,7 @@
 #import <YouTubeHeader/YTIMenuConditionalServiceItemRenderer.h>
 #import <YouTubeHeader/YTIPivotBarRenderer.h>
 #import <YouTubeHeader/YTPivotBarItemView.h>
+#import <dlfcn.h>
 
 // For Settings.x
 #import <PSHeader/Misc.h>
@@ -31,7 +32,8 @@
 #define HideVoiceSearch @"YouModHideVoiceSearchButton"
 #define HideCastButtonNav @"YouModHideCastButtonNavigationBar"
 // Feed
-#define HideSubbar @"YouModHideSubbar"
+#define RemoveVideoAds @"YouModRemoveVideoAds"
+#define HideYouTubePremium @"YouModHideYouTubePremiumPromotions"
 #define HideGenMusicShelf @"YouModHideGenMusicShelf"
 #define HideShortsShelf @"YouModHideShortsShelf"
 #define HideSearchHis @"YouModHideSearchHistoryAndSuggestions"
@@ -55,6 +57,7 @@
 #define HideContentWarning @"YouModHideContentWarning"
 #define HideRelateVideo @"YouModHideRelateVideoOnFinish"
 #define AutoFullScreen @"YouModAutoFullScreen"
+#define OldQualityPicker @"YouModUseOldQualityPicker"
 #define HideLikeButton @"YouModHideLikeButton"
 #define HideDisLikeButton @"YouModHideDisLikeButton"
 #define HideShareButton @"YouModHideShareButton"
@@ -85,6 +88,7 @@
 #define HideCreateButton @"YouModHideCreateButton"
 #define HideSubscriptTab @"YouModHideSubscriptionsTab"
 // Miscellaneous
+#define AllowsBackgroundPlayback @"YouModAllowsBackgroundPlayback"
 #define DisablesShortsPiP @"YouModTrytoDisablesShortsPiP"
 #define BlockUpgradeDialogs @"YouModBlockUpgradeDialogs"
 #define HideAreYouThereDialog @"YouModHideAreYouThereDialog"
@@ -93,6 +97,10 @@
 #define DisablesSnackBar @"YouModDisablesSnackBar"
 #define HideStartupAni @"YouModHideStartupAnimations"
 #define HidePlayInNextQueue @"YouModHidePlayInNextQueue"
+#define HideLikeDislikeVotes @"YouModHideLikeDislikeVotes"
+
+#define YT_BUNDLE_ID @"com.google.ios.youtube"
+#define YT_NAME @"YouTube"
 
 @interface YTITopbarLogoRenderer : NSObject
 @property(readonly, nonatomic) YTIIcon *iconImage;
@@ -126,4 +134,7 @@
 
 @interface YTPlayerViewController (YouMod)
 - (void)YouModAutoFullscreen;
+@end
+
+@interface SSOConfiguration : NSObject
 @end

@@ -256,6 +256,30 @@ NSBundle *YouModBundle() {
         }];
     [sectionItems addObject:feed];
 
+    // Remove video ads
+    YTSettingsSectionItem *removeads = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"REMOVE_ADS")
+        titleDescription:LOC(@"REMOVE_ADS_DESC")
+        accessibilityIdentifier:nil
+        switchOn:IS_ENABLED(RemoveVideoAds)
+        switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+            [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:RemoveVideoAds];
+            return YES;
+        }
+        settingItemId:0];
+    [sectionItems addObject:removeads];
+
+    // Hide YouTube Premium promotions
+    YTSettingsSectionItem *hideytppromo = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_YOUTUBE_PREMIUM")
+        titleDescription:LOC(@"HIDE_YOUTUBE_PREMIUM_DESC")
+        accessibilityIdentifier:nil
+        switchOn:IS_ENABLED(HideYouTubePremium)
+        switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+            [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:HideYouTubePremium];
+            return YES;
+        }
+        settingItemId:0];
+    [sectionItems addObject:hideytppromo];
+
     // Hide Subbar
     YTSettingsSectionItem *hidesubbar = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_SUBBAR")
         titleDescription:LOC(@"HIDE_SUBBAR_DESC")
@@ -542,6 +566,18 @@ NSBundle *YouModBundle() {
         }
         settingItemId:0];
     [sectionItems addObject:autofullscreen];
+
+    // Use old video quality picker
+    YTSettingsSectionItem *oldqualitypicker = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"OLD_QUALITY_PICKER")
+        titleDescription:LOC(@"OLD_QUALITY_PICKER_DESC")
+        accessibilityIdentifier:nil
+        switchOn:IS_ENABLED(OldQualityPicker)
+        switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+            [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:OldQualityPicker];
+            return YES;
+        }
+        settingItemId:0];
+    [sectionItems addObject:oldqualitypicker];
 
     // Hide like button
     YTSettingsSectionItem *hidelikebutton = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_LIKE_BUTTON")
@@ -927,6 +963,18 @@ NSBundle *YouModBundle() {
         }];
     [sectionItems addObject:miscell];
 
+    // Allows background playback
+    YTSettingsSectionItem *backgroundplayback = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"ALLOWS_BACKGROUND_PLAYBACK")
+        titleDescription:LOC(@"ALLOWS_BACKGROUND_PLAYBACK_DESC")
+        accessibilityIdentifier:nil
+        switchOn:IS_ENABLED(AllowsBackgroundPlayback)
+        switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+            [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:AllowsBackgroundPlayback];
+            return YES;
+        }
+        settingItemId:0];
+    [sectionItems addObject:backgroundplayback];
+
     // Try to disables Shorts PiP
     YTSettingsSectionItem *shortsPiP = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"DISABLES_SHORTS_PIP")
         titleDescription:LOC(@"DISABLES_SHORTS_PIP_DESC")
@@ -1022,6 +1070,18 @@ NSBundle *YouModBundle() {
         }
         settingItemId:0];
     [sectionItems addObject:hideplayinnext];
+
+    // Hide like/dislike votes
+    YTSettingsSectionItem *hidelikedislikevotes = [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_LIKE_DISLIKE_VOTES")
+        titleDescription:LOC(@"HIDE_LIKE_DISLIKE_VOTES_DESC")
+        accessibilityIdentifier:nil
+        switchOn:IS_ENABLED(HideLikeDislikeVotes)
+        switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+            [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:HideLikeDislikeVotes];
+            return YES;
+        }
+        settingItemId:0];
+    [sectionItems addObject:hidelikedislikevotes];
 
     // More coming soon...
 

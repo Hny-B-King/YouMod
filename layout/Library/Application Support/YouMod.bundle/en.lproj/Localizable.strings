@@ -20,6 +20,10 @@
 "HIDE_CAST_BUTTON_NAVBAR_DESC" = "Hide cast button from the navigation bar.";
 
 "FEED" = "Feed";
+"REMOVE_ADS" = "Remove video ads";
+"REMOVE_ADS_DESC" = "Removes advertisements from videos to prevents interruptions.";
+"HIDE_YOUTUBE_PREMIUM" = "Hide YouTube Premium promotions";
+"HIDE_YOUTUBE_PREMIUM_DESC" = "Hide YouTube Premium popups, banners, and upgrade dialogs.";
 "HIDE_SUBBAR" = "Hide subbar";
 "HIDE_SUBBAR_DESC" = "Hide subbar at the top of the feed.";
 "HIDE_MUSIC_PLAYLISTS" = "Hide music playlist generator";
@@ -68,6 +72,8 @@
 "HIDE_RELATE_VIDEO_DESC" = "Hide the grid of suggested related videos that appears when a video finishes playing.";
 "AUTO_FULLSCREEN" = "Auto fullscreen";
 "AUTO_FULLSCREEN_DESC" = "Automatically enter fullscreen mode when starting video playback.";
+"OLD_QUALITY_PICKER" = "Use old quality picker";
+"OLD_QUALITY_PICKER_DESC" = "Reverts the video quality selection menu to the classic version (lists all resolutions immediately).";
 "HIDE_LIKE_BUTTON" = "Hide Like button";
 "HIDE_LIKE_BUTTON_DESC" = "Hide Like button from the action bar under the video overlay.";
 "HIDE_DISLIKE_BUTTON" = "Hide Dislike button";
@@ -128,6 +134,8 @@
 "HIDE_SUBSCRIPT_TAB_DESC" = "Hide Subscriptions tab from the tab bar.";
 
 "MISCELLANEOUS" = "Miscellaneous";
+"ALLOWS_BACKGROUND_PLAYBACK" = "Allows background playback";
+"ALLOWS_BACKGROUND_PLAYBACK_DESC" = "Allows YouTube to play videos in the background.";
 "DISABLES_SHORTS_PIP" = "Disables Shorts PiP";
 "DISABLES_SHORTS_PIP_DESC" = "Try to disables Shorts PiP, this might not 100% disables it.";
 "BLOCK_UPGRADE_DIALOGS" = "Block upgrade dialogs";
@@ -144,3 +152,5 @@
 "HIDE_STARTUP_ANIMATIONS_DESC" = "Hide YouTube's startup animations when opening the app.";
 "HIDE_PLAY_IN_NEXT_QUEUE" = "Hide 'Play next in queue'";
 "HIDE_PLAY_IN_NEXT_QUEUE_DESC" = "Hide the 'Play next in queue' option from the flyout menu.";
+"HIDE_LIKE_DISLIKE_VOTES" = "Hide like/dislike votes";
+"HIDE_LIKE_DISLIKE_VOTES_DESC" = "Hide messages that pop up when you like/dislike videos.";

@@ -12,8 +12,6 @@ This tweak can hide, remove elements and others in YouTube. Such as:
 - Tab bar
 - And much more!
 
-Currently some tweaks are incomplete with this tweak as it is still currently under development :)
-
 ## Supported YouTube version
 Up to the latest, this is the goal of this tweak. Any versions starting from 19.x - latest.
 
