@@ -1200,19 +1200,19 @@ BOOL isTabSelected = NO;
 %hook GULKeychainStorage
 - (void)getObjectForKey:(id)key objectClass:(Class)objectClass accessGroup:(id)accessGroup completionHandler:(id)handler {
     accessGroup = accessGroupID();
-    %orig;
+    %orig(key, objectClass, accessGroup, handler);
 }
 - (void)setObject:(id)object forKey:(id)key accessGroup:(id)accessGroup completionHandler:(id)handler {
     accessGroup = accessGroupID();
-    %orig;
+    %orig(object, key, accessGroup, handler);
 }
 - (void)removeObjectForKey:(id)key accessGroup:(id)accessGroup completionHandler:(id)handler {
     accessGroup = accessGroupID();
-    %orig;
+    %orig(key, accessGroup, handler);
 }
 - (void)getObjectFromKeychainForKey:(id)key objectClass:(Class)objectClass accessGroup:(id)accessGroup completionHandler:(id)handler {
     accessGroup = accessGroupID();
-    %orig;
+    %orig(key, objectClass, accessGroup, handler);
 }
 - (id)keychainQueryWithKey:(id)key accessGroup:(id)accessGroup {
     accessGroup = accessGroupID();
@@ -1242,6 +1242,18 @@ BOOL isTabSelected = NO;
     %orig(arg);
 }
 - (id)keychainAccessGroup { return accessGroupID(); }
+%end
+
+// Fixes crash/data saving
+%hook NSFileManager
+- (NSURL *)containerURLForSecurityApplicationGroupIdentifier:(NSString *)groupIdentifier {
+    if (groupIdentifier != nil) {
+        NSArray *paths = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+        NSURL *documentsURL = [paths lastObject];
+        return [documentsURL URLByAppendingPathComponent:@"AppGroup"];
+    }
+    return %orig(groupIdentifier);
+}
 %end
 
 // YTSlientVote (https://github.com/PoomSmart/YTSilentVote)
